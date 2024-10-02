@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Games</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f8ff; /* Light blue background */
+            color: #333;
+            margin: 0;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 20px;
+            color: #000606;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            background-color: #ffffff; /* White table background */
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #0a858e; /* Light blue header */
+            color: #ffffff;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .action-buttons a {
+            margin-right: 10px;
+            text-decoration: none;
+            color: #ffffff;
+        }
+
+        .action-buttons button {
+            background-color: #0a858e; /* Light blue button */
+            color: #ffffff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+        }
+
+        .action-buttons button:hover {
+            background-color: #009acc; /* Slightly darker blue on hover */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        {% if game_data or game_data_2 or game_data_3 %}
+            <h1>Your Games</h1>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Sport Name</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                        <th>Ground</th>
+                        <th>Section</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for game_data_item in game_data %}
+                        <tr>
+                            <td>{{ game_data_item.sport_name }}</td>
+                            <td>{{ game_data_item.start_time }}</td>
+                            <td>{{ game_data_item.end_time }}</td>
+                            <td>{{ game_data_item.ground_name }}</td>
+                            <td>{{ game_data_item.section_name }}</td>
+                            <td class="action-buttons">
+                                <a href="{% url 'give_feedback' game_id=game_data_item.game_id %}">
+                                    <button>Feedback</button>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+
+                    {% for game_data_item in game_data_2 %}
+                        <tr>
+                            <td>{{ game_data_item.sport_name }}</td>
+                            <td>{{ game_data_item.start_time }}</td>
+                            <td>{{ game_data_item.end_time }}</td>
+                            <td>{{ game_data_item.ground_name }}</td>
+                            <td>{{ game_data_item.section_name }}</td>
+                            <td class="action-buttons">
+                                <a href="{% url 'give_feedback' game_id=game_data_item.game_id %}">
+                                    <button>Feedback</button>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+
+                    {% for game_data_item in game_data_3 %}
+                        <tr>
+                            <td>{{ game_data_item.sport_name }}</td>
+                            <td>{{ game_data_item.start_time }}</td>
+                            <td>{{ game_data_item.end_time }}</td>
+                            <td>{{ game_data_item.ground_name }}</td>
+                            <td>{{ game_data_item.section_name }}</td>
+                            <td class="action-buttons">
+                                <a href="{% url 'give_feedback' game_id=game_data_item.game_id %}">
+                                    <button>Feedback</button>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <h1>You don't have any games</h1>
+        {% endif %}
+    </div>
+
+    <!-- Include Bootstrap JS (Optional) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sections</title>
+</head>
+</head>
+<body>
+    <h1>Sections</h1>
+    {% if section_data %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Section Name</th>
+                    <th>Field Type</th>
+                    <th>Indoor</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for section in section_data %}
+                    <tr>
+                        <td>{{ section.section_name }}</td>
+                        <td>{{ section.field_type }}</td>
+                        <td>{{ section.indoor }}</td>
+                        <td>
+                            <a href="{% url 'update_section' ground_id=section.ground_id  section_id=section.section_id %}">
+                                <button>Update</button>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No sections found.</p>
+    {% endif %}
+
+    <a href="{% url 'add_section' ground_id=ground_id %}"><button>Add Section</button></a>
+
+</body>
+</html>

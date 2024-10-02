@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Logout</title>
+</head>
+<body>
+    <h1>Logout</h1>
+    <p>You have been successfully logged out. Press the button below to return to start.</p>
+    <a href="{% url 'start' %}"><button>Start</button></a>
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</body>
+</html>

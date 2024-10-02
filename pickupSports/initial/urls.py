@@ -1,0 +1,37 @@
+from django.urls import path
+
+from . import views
+
+urlpatterns = [
+    path("", views.start, name="start"),
+    path("home", views.home, name="home"),
+    path("register", views.register, name="register"),
+    path("game", views.game, name="game"),
+    path("feedback", views.feedback, name="feedback"),
+    path("login", views.login, name="login"),
+    path("search", views.searchGame, name="search"),
+    path("logout", views.logout, name='logout'),
+    path("my_games", views.myGames, name='myGames'), 
+    path("delete", views.myGames, name='delete'), 
+    path("city", views.changeCity, name='city'), 
+    path("joingame", views.sport_games, name='joingame'),
+    path('joingame/<int:game_id>/', views.joinGame, name='joingame'), 
+    path('comments/<int:game_id>/', views.comments, name='comments'),
+    path('give_feedback/<int:game_id>/', views.giveFeedback, name='give_feedback'),
+    path('delete_game/<int:game_id>/', views.delete_game, name='delete_game'),
+    path('leave_game/<int:game_id>/', views.leaveGame, name='leave_game'),
+    path("cities", views.cities, name='cities'),
+    path("add_city", views.addCity, name='add_city'),
+    path("grounds", views.grounds, name='grounds'),
+    path("add_ground", views.addGround, name='add_ground'),
+    path("add_section/<int:ground_id>/", views.addSection, name='add_section'),
+    path("sports", views.sports, name='sports'),
+    path("add_sport", views.addSport, name='add_sport'),
+    path("register_manager", views.register_manager, name="register_manager"),
+    path("analytics", views.analytics, name='analytics'),
+    path('update_game/<int:game_id>/', views.update_game, name='update_game'),
+    path('delete_game/<int:game_id>/', views.delete_game, name='delete_game'),
+    path("update_section/<int:ground_id>/<int:section_id>/", views.updateSection, name='update_section'),
+    path("sections/<int:ground_id>/", views.sections, name='sections'),
+    path("view_feedbacks", views.viewFeedbacks, name='view_feedbacks'),
+]

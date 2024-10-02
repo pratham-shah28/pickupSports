@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Sport</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f8ff; /* Light blue background */
+            color: #333;
+            margin: 0;
+            text-align: center;
+        }
+
+        h2 {
+            margin-top: 20px;
+            color: #000606;
+        }
+
+        p {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #555;
+        }
+
+        form {
+            margin-top: 20px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 20px;
+            border-radius: 12px;
+            background-color: #fff; /* White background */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333; /* Dark text */
+        }
+
+        form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #0a858e; /* Light blue button */
+            color: #ffffff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #009acc; /* Slightly darker blue on hover */
+        }
+    </style>
+</head>
+
+<body>
+    {% block content %}
+        <h2>Select Sport</h2>
+        <p>
+            There are games for the following sports in your city, please select one to join a game.
+            <br> If your sport is not here, feel free to create a game for it.
+        </p>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit</button>
+        </form>
+    {% endblock %}
+</body>
+
+</html>

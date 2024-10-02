@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedbacks</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+            font-family: 'Arial', sans-serif;
+            background-color: #f9fdfc; /* Light blue background */
+            color: #333;
+            margin: 0;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 20px;
+            color: #000606;
+        }
+
+        form {
+            margin-top: 20px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 8px;
+            color: #000606;
+        }
+
+        form button {
+            background-color: #0a858e; /* Dark teal */
+            color: #ffffff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        form button:hover {
+            background-color: #009acc; /* Light teal */
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Feedbacks</h1>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Search</button>
+        </form>
+
+        {% if feedback_data %}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Section Name</th>
+                        <th>Feedback</th>
+                        <th>Rating</th>
+                        <th>Username</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for feedback in feedback_data %}
+                        <tr>
+                            <td>{{ feedback.section_name }}</td>
+                            <td>{{ feedback.feedback_description }}</td>
+                            <td>{{ feedback.rating }}</td>
+                            <td>{{ feedback.username }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No feedbacks found.</p>
+        {% endif %}
+    </div>
+
+    <!-- Include Bootstrap JS (Optional) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>

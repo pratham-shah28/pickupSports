@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: rgb(249, 253, 252); /* Light gray background */
+        color: #333;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+      }
+
+      h1 {
+        color: #000606;
+      }
+
+      nav {
+        margin-top: 20px;
+      }
+
+      nav a {
+        text-decoration: none;
+        margin-right: 10px;
+      }
+
+      button {
+        background-color: #108d96;
+        color: #ffffff;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      .messages {
+        list-style: none;
+        padding: 0;
+      }
+
+      .success {
+        color: #28a745;
+      }
+
+      .error {
+        color: #dc3545;
+      }
+    </style>
+  </head>
+
+  <body>
+    {% if username %}
+    <h1>Welcome, {{ username }}!</h1>
+    {% else %}
+    <h1>Welcome, Guest!</h1>
+    {% endif %}
+
+    <nav>
+      <a href="{% url 'game' %}"><button>Create Game</button></a>
+      <a href="{% url 'myGames' %}"><button>View My Games</button></a>
+      <a href="{% url 'feedback' %}"><button>Create Feedback</button></a>
+      <a href="{% url 'view_feedbacks' %}"><button>View Feedbacks</button></a>
+      <a href="{% url 'city' %}"><button>Change City</button></a>
+      <a href="{% url 'joingame' %}"><button>Join Game</button></a>
+      <a href="{% url 'analytics' %}"><button>Analytics</button></a>
+      <a href="{% url 'logout' %}"><button>Logout</button></a>
+    </nav>
+
+    {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+      <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+        {{ message }}
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </body>
+</html>

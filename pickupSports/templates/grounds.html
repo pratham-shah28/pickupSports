@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grounds</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f8ff; /* Light blue background */
+            color: #333;
+            margin: 0;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 20px;
+            color: #000606;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #0a858e; /* Light blue header */
+            color: #ffffff;
+        }
+
+        button {
+            background-color: #0a858e; /* Light blue button */
+            color: #ffffff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 6px;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #009acc; /* Slightly darker blue on hover */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Grounds</h1>
+
+    {% if ground_data %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Ground Name</th>
+                    <th>City</th>
+                    <th>Zipcode</th>
+                    <th>View Sections</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ground in ground_data %}
+                    <tr>
+                        <td>{{ ground.ground_name }}</td>
+                        <td>{{ ground.city }}</td>
+                        <td>{{ ground.zipcode }}</td>
+                        <td>
+                            <a href="{% url 'sections' ground_id=ground.ground_id %}">
+                                <button>View Sections</button>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No grounds found.</p>
+    {% endif %}
+
+    <a href="{% url 'add_ground' %}"><button>Add Ground</button></a>
+</body>
+
+</html>

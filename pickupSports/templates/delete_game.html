@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Game</title>
+</head>
+<body>
+    <h2>Confirm Deletion</h2>
+    <p>Are you sure you want to delete this game?</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+    </form>
+    <a href="{% url 'myGames' %}"><button>Cancel</button></a>
+</body>
+</html>

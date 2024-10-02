@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Players Form</title>
+</head>
+<body>
+
+    <h2>Player Information</h2>
+
+    <p>Current Number of Players: {{ current_players }}</p>
+    <p>Maximum Players: {{ max_players }}</p>
+
+    <form method="post" action="{% url 'your_form_submission_view' %}">
+        {% csrf_token %}
+
+        <label for="id_num_players">Add Players:</label>
+        <input type="number" name="num_players" id="id_num_players" required min="1">
+
+        <button type="submit">Add Players</button>
+    </form>
+
+</body>
+</html>

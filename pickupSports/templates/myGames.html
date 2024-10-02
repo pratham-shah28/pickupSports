@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Games</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+
+        h1 {
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .action-buttons a {
+            margin-right: 10px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <h1>Games created by you.</h1>
+
+        {% if game_data %}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Sport Name</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                        <th>Number of Players</th>
+                        <th>Maximum players</th>
+                        <th>Ground</th>
+                        <th>Section</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for game in game_data %}
+                        <tr>
+                            <td>{{ game.sport_name }}</td>
+                            <td>{{ game.start_time }}</td>
+                            <td>{{ game.end_time }}</td>
+                            <td>{{ game.num_players }}</td>
+                            <td>{{ game.max_players }}</td>
+                            <td>{{ game.ground_name }}</td>
+                            <td>{{ game.section_name }}</td>
+                            <td class="action-buttons">
+                                <a href="{% url 'update_game' game_id=game.game_id %}" class="btn btn-primary">Update</a>
+                                <a href="{% url 'delete_game' game_id=game.game_id %}" class="btn btn-danger">Delete</a>
+                                <a href="{% url 'comments' game_id=game.game_id %}" class="btn btn-info">Comments</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No games created by you.</p>
+        {% endif %}
+
+        <h1>Games joined by you.</h1>
+        {% if game_data_2 %}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Sport Name</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                        <th>Number of Players</th>
+                        <th>Maximum players</th>
+                        <th>Ground</th>
+                        <th>Section</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for game in game_data_2 %}
+                        <tr>
+                            <td>{{ game.sport_name }}</td>
+                            <td>{{ game.start_time }}</td>
+                            <td>{{ game.end_time }}</td>
+                            <td>{{ game.num_players }}</td>
+                            <td>{{ game.max_players }}</td>
+                            <td>{{ game.ground_name }}</td>
+                            <td>{{ game.section_name }}</td>
+                            <td class="action-buttons">
+                                <a href="{% url 'leave_game' game_id=game.game_id %}" class="btn btn-danger">Leave Game</a>
+                                <a href="{% url 'comments' game_id=game.game_id %}" class="btn btn-info">Comments</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No games joined by you.</p>
+        {% endif %}
+
+
+
+        <h1>Your past games</h1>
+        {% if game_data_3 %}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Sport Name</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                        <th>Number of Players</th>
+                        <th>Maximum players</th>
+                        <th>Ground</th>
+                        <th>Section</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for game in game_data_3 %}
+                        <tr>
+                            <td>{{ game.sport_name }}</td>
+                            <td>{{ game.start_time }}</td>
+                            <td>{{ game.end_time }}</td>
+                            <td>{{ game.num_players }}</td>
+                            <td>{{ game.max_players }}</td>
+                            <td>{{ game.ground_name }}</td>
+                            <td>{{ game.section_name }}</td>
+                            
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>You don't have any past games.</p>
+        {% endif %}
+
+        <a href="{% url 'home' %}" class="btn btn-primary home-button">Home</a>
+    </div>
+
+    <!-- Include Bootstrap JS (Optional) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Page</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9fdfc; /* Light blue background */
+            color: #333;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        h1 {
+            color: #000606;
+            margin-top: 50px;
+        }
+
+        button {
+            background-color: #0a858e;
+            color: #ffffff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .messages {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        .success {
+            color: #28a745;
+        }
+
+        .error {
+            color: #dc3545;
+        }
+    </style>
+    <script>
+        function validateForm() {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            if (username.trim() === '' || password.trim() === '') {
+                alert('Username and password cannot be empty.');
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Welcome to PickUp Sports!</h1>
+
+    <form action="{% url 'register' %}" method="get" onsubmit="return validateForm()">
+        <button type="submit">Register</button>
+    </form>
+
+    <form action="{% url 'login' %}" method="get" onsubmit="return validateForm()">
+        <button type="submit">Login</button>
+    </form>
+
+    <form action="{% url 'register_manager' %}" method="get" onsubmit="return validateForm()">
+        <p>Manager sign up</p>
+        <button type="submit">Register Manager</button>
+    </form>
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+
+</html>

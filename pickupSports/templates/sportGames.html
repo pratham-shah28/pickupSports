@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+            font-family: 'Arial', sans-serif;
+            background-color: #f9fdfc; /* Light blue background */
+            color: #333;
+            margin: 0;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 20px;
+            color: #000606;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #0a858e;
+            color: #ffffff;
+        }
+
+        tbody tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        a button {
+            background-color: #0a858e;
+            color: #ffffff;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        a button:hover {
+            background-color: #23c823;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Games</h1>
+
+    {% if game_data %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Sport Name</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Number of Players</th>
+                    <th>Maximum players</th>
+                    <th>Ground</th>
+                    <th>Section</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for game in game_data %}
+                    <tr>
+                        <td>{{ game.sport_name }}</td>
+                        <td>{{ game.start_time }}</td>
+                        <td>{{ game.end_time }}</td>
+                        <td>{{ game.num_players }}</td>
+                        <td>{{ game.max_players }}</td>
+                        <td>{{ game.ground_name }}</td>
+                        <td>{{ game.section_name}}</td>
+                        <td>
+                            <a href="{% url 'joingame' game_id=game.game_id %}">
+                                <button>Join Game</button>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No games found.</p>
+    {% endif %}
+</body>
+
+</html>

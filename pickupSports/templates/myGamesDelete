@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Games</title>
+</head>
+</head>
+<body>
+    <h1>My Game</h1>
+
+    {% if game_data %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Game ID</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Number of Players</th>
+                    <th>Max Players</th>
+                    <th>Sport Name</th>
+                    <th>Section ID</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for game in game_data %}
+                <tr>
+                        <td>{{ game.game_id }}</td>
+                        <td>{{ game.start_time }}</td>
+                        <td>{{ game.end_time }}</td>
+                        <td>{{ game.num_players }}</td>
+                        <td>{{ game.max_players }}</td>
+                        <td>{{ game.sport_name }}</td>
+                        <td>{{ game.section_id }}</td>
+                        <td>
+                            <a href="{% url 'delete_game' game_id=game.game_id %}">
+                                <button>Delete</button>
+                            </a>
+                        </td>
+                        </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No games found.</p>
+    {% endif %}
+</body>
+</html>
